@@ -1,0 +1,52 @@
+4. 数的变换
+【问题描述】
+
+读入一个正整数 n，计算其各位数字之和，用汉语拼音写出和的每一位数字。
+
+【输入形式】
+
+每个测试输入包含 1 个测试用例，即给出自然数 n 的值。这里保证 n 不大于 2,147,483,647。
+
+【输出形式】
+
+在一行内输出 n 的各位数字之和的每一位，拼音数字间有 1 空格。
+
+【样例输入】
+
+2147483647
+
+【样例输出】
+
+si liu
+
+#include <stdio.h>
+
+int main() {
+    long long n;
+    scanf("%lld", &n);
+    
+    int sum = 0;
+    while (n > 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    
+    char pinyin[10][5] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
+    
+    if (sum == 0) {
+        printf("ling");
+    } else {
+        int digits[20], count = 0;
+        while (sum > 0) {
+            digits[count++] = sum % 10;
+            sum /= 10;
+        }
+        
+        for (int i = count - 1; i >= 0; i--) {
+            printf("%s", pinyin[digits[i]]);
+            if (i > 0) printf(" ");
+        }
+    }
+    
+    return 0;
+}
