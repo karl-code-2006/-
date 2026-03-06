@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main() {
+    char letter;
+    char word[201];
+    
+    scanf(" %c %s", &letter, word);
+    
+    letter = tolower(letter);
+    int length = strlen(word);
+    int count = 0;
+    
+    for (int i = 0; i < length; i++) {
+        if (tolower(word[i]) == letter) {
+            count++;
+        }
+    }
+    
+    double probability = (double)count / length;
+    printf("%.5f\n", probability);
+    
+    return 0;
+}
